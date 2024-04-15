@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LerArquivoTexto {
-    public static FileReturnDTO toMatrix(String nome) {
+    public static FileReturnDTO toMatrix(String nome, int contOp) {
         CharAndNextIndex[][] matriz = new CharAndNextIndex[1][1];
         
         int rowStart = 0;
@@ -21,6 +21,7 @@ public class LerArquivoTexto {
             for (int i = 0; i < linhas; i++) {
                 linha = bufferLeitura.readLine();
                 CharAndNextIndex UltimoCaractere = null;
+                contOp+=2;
                 if (linha.charAt(0) == '-') {
                     rowStart = i;
 
@@ -32,16 +33,21 @@ public class LerArquivoTexto {
 
                     matriz[i][0] = charAndNextIndex;
                     UltimoCaractere = charAndNextIndex;
+                    contOp+=4;
+
 
                 }
 
                 for (int j = 0; j < colunas; j++) {
+                    System.out.println("i: " + i + " j: " + j);
                     char caractere = linha.charAt(j);
                     if(caractere == ' '){
+                        contOp++;
                         continue;
                     }
 
                     if(caractere == '-' || caractere == '|'){
+                        contOp++;
                         continue;
                     }
 
@@ -52,19 +58,23 @@ public class LerArquivoTexto {
                     charAndNextIndex.setCharacter(caractere);
 
                     matriz[i][j] = charAndNextIndex;
+                    contOp+=3;
 
                     if(UltimoCaractere != null){
                         charAndNextIndex.setIndexHorizontalEsquerda(UltimoCaractere.getIndexHorizontal());
                         UltimoCaractere.setIndexHorizontalDireita(j);
+                        contOp+=2;
                     }
                     
                     if(waiting[j] != null){
                         charAndNextIndex.setIndexVerticalEmCima(waiting[j].getIndexVertical());
                         waiting[j].setIndexVerticalEmBaixo(i);
+                        contOp+=2;
                     }
 
                     waiting[j] = charAndNextIndex;
                     UltimoCaractere = charAndNextIndex;
+                    contOp+=2;
                 }
             } 
             
@@ -74,6 +84,6 @@ public class LerArquivoTexto {
         } catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-        return new FileReturnDTO(matriz, rowStart);
+        return new FileReturnDTO(matriz, rowStart, contOp);
     }
 }

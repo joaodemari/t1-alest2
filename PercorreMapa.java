@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class PercorreMatriz {
-    public static ArrayList<Integer> act(CharAndNextIndex[][] matriz, int rowStart) {
-        ArrayList<Integer> moneys = new ArrayList<>();
+public class PercorreMapa {
+    public static int act(CharAndNextIndex[][] matriz, int rowStart, int contOp) {
         HashSet<Character> numbers = new HashSet<>();
         int sum = 0;
         for(char c = '0'; c <= '9'; c++){
             numbers.add(c);
+            contOp++;
         }
 
         numbers.add('#');
@@ -18,10 +18,12 @@ public class PercorreMatriz {
             Direcao direcao = Direcao.DIREITA;
             String readingNumber = "";
             boolean NotOneStep = false;
+            contOp+=5;
             while (reading.getCharacter() != '#') {
                 direcao = Direcao.proximaDirecao(direcao, reading.getCharacter());
                 int lastRow = readingRow;
                 int lastColumn = readingColumn;
+                contOp+=3;
                 switch (direcao) {
                     case DIREITA:
                         readingColumn = reading.getIndexHorizontalDireita();
@@ -42,19 +44,23 @@ public class PercorreMatriz {
                     default:
                     break;
                 }
+                contOp+=2;
                 char lastCharacter = reading.getCharacter();
                 reading = matriz[readingRow][readingColumn];
                 if (numbers.contains(reading.getCharacter())) {
                     NotOneStep = !(NotOneStep && numbers.contains(lastCharacter)) && !readingNumber.equals("");
-                    if(NotOneStep || reading.getCharacter() == '#'){
+                    if(NotOneStep || (reading.getCharacter() == '#' && readingNumber != "")){
                         int number = Integer.parseInt(readingNumber);
                         sum += number;
                         readingNumber = "";
+                        contOp+=3;
                     }
                     readingNumber += reading.getCharacter();
+                    contOp+=2;
                 }
             }
-        System.out.println(sum);
-        return moneys;
+
+        System.out.println("Resultado da soma: " + sum);
+        return contOp;
     }
 }
