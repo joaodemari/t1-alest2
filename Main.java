@@ -5,14 +5,14 @@ public class Main{
 
         ArrayList<String> arquivos = new ArrayList<>();
         arquivos.add("casoE10.txt");
-        // arquivos.add("casoE50.txt");
-        // arquivos.add("casoE100.txt");
-        // arquivos.add("casoE200.txt");
-        // arquivos.add("casoE500.txt");
-        // arquivos.add("casoE750.txt");
-        // arquivos.add("casoE1000.txt");
-        // arquivos.add("casoE1500.txt");
-        // arquivos.add("casoE2000.txt");
+        arquivos.add("casoE50.txt");
+        arquivos.add("casoE100.txt");
+        arquivos.add("casoE200.txt");
+        arquivos.add("casoE500.txt");
+        arquivos.add("casoE750.txt");
+        arquivos.add("casoE1000.txt");
+        arquivos.add("casoE1500.txt");
+        arquivos.add("casoE2000.txt");
 
         for (int i = 0; i < arquivos.size(); i++) {
             int contOp = 0;

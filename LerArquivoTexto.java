@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -39,7 +38,6 @@ public class LerArquivoTexto {
                 }
 
                 for (int j = 0; j < colunas; j++) {
-                    System.out.println("i: " + i + " j: " + j);
                     char caractere = linha.charAt(j);
                     if(caractere == ' '){
                         contOp++;
