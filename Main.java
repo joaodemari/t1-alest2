@@ -5,6 +5,7 @@ public class Main{
     public static void main(String[] args) {
 
         ArrayList<String> arquivos = new ArrayList<>();
+        arquivos.add("casoE10.txt");
         arquivos.add("casoE50.txt");
         arquivos.add("casoE100.txt");
         arquivos.add("casoE200.txt");

@@ -15,6 +15,7 @@ public class PercorreMapa {
         String readingNumber = "";
         boolean ultimoFoiNumero = false;
         int sum = 0;
+        contOp+=6;
 
         while (reading != '#') {
 
@@ -45,6 +46,7 @@ public class PercorreMapa {
             }
             contOp++;
             reading = matriz[readingRow][readingColumn];
+            contOp++;
             if (numbers.contains(reading))
             {
                 readingNumber += reading;
@@ -57,7 +59,7 @@ public class PercorreMapa {
                 int number = Integer.parseInt(readingNumber);
                 sum += number;
                 readingNumber = "";
-                contOp+=3;
+                contOp+=4;
             }
            
         }
